@@ -6,4 +6,8 @@
 
     <string name="already_have_account">Already have an account? Login!</string>
     <string name="button_register">Register</string>
+    <string name="selection_text">What would you like to do?</string>
+    <string name="logo_description">Trash Cache Logo</string>
+    <string name="btn_photo_search">Take a photo</string>
+    <string name="btn_text_search">Look up item</string>
 </resources>
