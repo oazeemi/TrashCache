@@ -58,7 +58,6 @@
             app:layout_constraintEnd_toEndOf="@+id/imageView2"
             app:layout_constraintStart_toStartOf="@+id/imageView2"
             app:layout_constraintTop_toBottomOf="@+id/imageView2"
-            tools:background="@android:color/white"
             android:elevation="2dp"
             android:background="@drawable/border"
             />
