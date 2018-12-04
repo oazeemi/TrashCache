@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "70133192138",
+    "firebase_url": "https://info448trashcache.firebaseio.com",
+    "project_id": "info448trashcache",
+    "storage_bucket": "info448trashcache.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:70133192138:android:1b00550e34b59991",
+        "android_client_info": {
+          "package_name": "edu.uw.oazeemi.trashcache"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "70133192138-shsb3j1o3kkbvu59u8monr1sum7kfnbv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGP3XArBgpPxMlUoIhhplGNVwSwCtYmv4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
