@@ -12,6 +12,7 @@ import android.widget.Button
 
 import kotlinx.android.synthetic.main.activity_main.*
 
+
 class MainActivity : AppCompatActivity() {
     private val REQUEST_IMAGE_CAPTURE = 1
 
@@ -23,6 +24,8 @@ class MainActivity : AppCompatActivity() {
         val photoSearchBtn: Button = findViewById(R.id.btn_photo_search)
         photoSearchBtn.setOnClickListener { dispatchTakePictureIntent() }
     }
+
+
 
     private fun dispatchTakePictureIntent() {
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent: Intent ->
