@@ -7,4 +7,6 @@
     <color name="colorPrimary">#27ae60</color>
     <color name="colorPrimaryDark">#007d34</color>
     <color name="colorAccent">#3a3a3a</color>
+    <color name="shape_border_active">#eff0f1</color>
+    <color name="black_semi">#24000000</color>
 </resources>
