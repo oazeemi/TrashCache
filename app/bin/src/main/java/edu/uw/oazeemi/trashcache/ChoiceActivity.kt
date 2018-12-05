@@ -45,6 +45,12 @@ class ChoiceActivity : AppCompatActivity() {
             val intent =  Intent(this, LocationActivity::class.java)
             startActivity(intent)
         }
+
+        val testButton: Button = findViewById(R.id.button)
+        testButton.setOnClickListener {
+            val intent = Intent(this, RecycleInformation::class.java)
+            startActivity(intent)
+        }
     }
 
 

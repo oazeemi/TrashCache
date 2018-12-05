@@ -93,7 +93,7 @@ class LocationActivity : AppCompatActivity() {
     }
 
     private fun downloadData(latitude : Double, longitude : Double) {
-        val key = "5eb05dcbb906719f"
+        val key = getString(R.string.earth_key)
         val url = "http://api.earth911.com/"
         var query = ""
         if (download) {

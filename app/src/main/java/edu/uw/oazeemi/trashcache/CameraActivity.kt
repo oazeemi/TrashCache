@@ -3,6 +3,7 @@ package edu.uw.oazeemi.trashcache
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.hardware.Camera
 import android.net.Uri
@@ -125,6 +126,8 @@ class CameraActivity : AppCompatActivity() {
                         object : OnSuccessListener<List<FirebaseVisionCloudLabel>> {
                             override fun onSuccess(labels: List<FirebaseVisionCloudLabel>) {
 
+                                Toast.makeText(this@CameraActivity, "Here", Toast.LENGTH_LONG).show()
+
                                 var item = labels[0]
                                 var itemName = item.label
                                 var itemConfidence = item.confidence
@@ -137,6 +140,9 @@ class CameraActivity : AppCompatActivity() {
                                 //Toast.makeText(this@CameraActivity, "${itemDetected.toString()}", Toast.LENGTH_LONG).show()
 
                                 mDatabase.child("itemsDetected").push().setValue(itemDetected) //add to the list
+                                val intent = Intent(this@CameraActivity, RecycleInformation::class.java)
+                                intent.putExtra("item", "$itemName")
+                                startActivity(intent)
                             }
                         })
                 .addOnFailureListener(
