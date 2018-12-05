@@ -9,9 +9,13 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
+import android.support.v4.widget.DrawerLayout
+import android.support.v7.app.ActionBar
+import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.widget.ListView
 import android.widget.Toast
@@ -23,6 +27,7 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 
 import kotlinx.android.synthetic.main.activity_location.*
+import kotlinx.android.synthetic.main.app_bar_main.*
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -44,6 +49,12 @@ class LocationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_location)
+        val toolbar: Toolbar = findViewById(R.id.toolbar_main)
+        toolbar.title = "Recycling Facilities"
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+
         setupPermissions()
         getLocation()
     }
