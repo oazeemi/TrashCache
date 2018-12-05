@@ -5,6 +5,7 @@
     <color name="toolbarColor">#27AE60</color>
     <color name="colorButtonPrimary">#27AE60</color>
     <color name="colorButtonSecondary">#317c36</color>
+    <color name="colorButtonTertiary">#ae3427</color>
     <color name="colorPrimary">#27ae60</color>
     <color name="colorPrimaryDark">#007d34</color>
     <color name="colorAccent">#3a3a3a</color>

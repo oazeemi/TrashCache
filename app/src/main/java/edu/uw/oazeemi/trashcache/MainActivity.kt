@@ -50,11 +50,11 @@ class MainActivity : AppCompatActivity() {
         toggle = ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawer.addDrawerListener(toggle)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        val actionbar: ActionBar? = supportActionBar
-        actionbar?.apply {
-            setDisplayHomeAsUpEnabled(true)
-            setHomeAsUpIndicator(R.drawable.ic_menu)
-        }
+//        val actionbar: ActionBar? = supportActionBar
+//        actionbar?.apply {
+//            setDisplayHomeAsUpEnabled(true)
+//            setHomeAsUpIndicator(R.drawable.ic_menu)
+//        }
 
 
         drawer.addDrawerListener(
@@ -107,11 +107,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Verify the action and get the query
-        if (Intent.ACTION_SEARCH == intent.action) {
-            intent.getStringExtra(SearchManager.QUERY)?.also { query ->
-//                doMySearch(query)
-            }
-        }
+//        if (Intent.ACTION_SEARCH == intent.action) {
+//            intent.getStringExtra(SearchManager.QUERY)?.also { query ->
+////                doMySearch(query)
+//            }
+//        }
 
         // CHOICES
         val photoSearchBtn: Button = findViewById(R.id.btn_photo_search)
@@ -124,6 +124,15 @@ class MainActivity : AppCompatActivity() {
         locationSearch.setOnClickListener {
             val intent =  Intent(this, LocationActivity::class.java)
             startActivity(intent)
+        }
+
+        val logOut: Button = findViewById(R.id.btn_log_out)
+        logOut.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            val intent =  Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+
+
         }
     }
 
