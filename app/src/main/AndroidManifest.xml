@@ -4,7 +4,8 @@
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
@@ -40,11 +41,10 @@
             android:label="@string/title_activity_register"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ChoiceActivity" />
-
         <activity
             android:name=".LocationActivity"
             android:label="@string/title_activity_location"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
 
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
@@ -52,8 +52,11 @@
 
         <activity
             android:name=".CameraActivity"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".RecycleInformation"
+            android:label="@string/title_activity_recycle_information"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
