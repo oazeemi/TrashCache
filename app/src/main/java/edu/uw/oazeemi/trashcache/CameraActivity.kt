@@ -12,6 +12,7 @@ import android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE
 import android.util.Log
 import android.widget.Button
 import android.widget.FrameLayout
+import android.widget.ImageButton
 import android.widget.Toast
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
@@ -64,7 +65,7 @@ class CameraActivity : AppCompatActivity() {
         preview = CameraPreview(this, camera!!)
         val previewLayout = findViewById<FrameLayout>(R.id.camera_preview)
         previewLayout.addView(preview)
-        val captureButton: Button = findViewById(R.id.button_capture)
+        val captureButton: ImageButton = findViewById(R.id.button_capture)
         captureButton.setOnClickListener {
             // get an image from the camera
             camera?.takePicture(null, null, mPicture)
