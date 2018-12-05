@@ -15,9 +15,11 @@ import com.google.firebase.ml.vision.FirebaseVision
 import com.google.firebase.ml.vision.cloud.FirebaseVisionCloudDetectorOptions
 import com.google.firebase.ml.vision.cloud.label.FirebaseVisionCloudLabel
 import android.util.Log
+import com.google.firebase.ml.vision.label.FirebaseVisionLabelDetectorOptions
 import android.widget.Toast
 import android.R.attr.data
 import android.support.v4.app.NotificationCompat.getExtras
+import com.google.firebase.ml.vision.cloud.label.FirebaseVisionCloudLabelDetector
 import kotlinx.android.synthetic.main.activity_choice.*
 
 
@@ -47,15 +49,19 @@ class ChoiceActivity : AppCompatActivity() {
 
 //            mImageLabe
 ///
-            val image = FirebaseVisionImage.fromBitmap(imageBitmap)
+            val image: FirebaseVisionImage =  FirebaseVisionImage.fromBitmap(imageBitmap)
             labelImage(image)
             labelImagesCloud(image)
         }
     }
 
     fun labelImage(image: FirebaseVisionImage) {
-            val detector = FirebaseVision.getInstance()
-                    .visionLabelDetector
+        val options = FirebaseVisionLabelDetectorOptions.Builder()
+                .setConfidenceThreshold(0.8f)
+                .build()
+
+        val detector = FirebaseVision.getInstance()
+                .getVisionLabelDetector(options)
 
             val result = detector.detectInImage(image)
                     .addOnSuccessListener { labels ->
@@ -66,8 +72,11 @@ class ChoiceActivity : AppCompatActivity() {
                             val text = label.label
                             val entityId = label.entityId
                             val confidence = label.confidence
-                            Log.v("test", "addOnSuccessListener - Number of faces detected: " + label.label.toString())
+                            Log.i("imageLabel", text.toString())
+                            Log.i("imageLabel", entityId.toString())
+                            Log.i("imageLabel", confidence.toString())
                         }
+
 
 
 
@@ -81,22 +90,23 @@ class ChoiceActivity : AppCompatActivity() {
                                     // ...
                                 }
                             })         // [END run_detector]
+//        val result2 = result.result
+//        Log.d("test1234", result2)
         }
 
     private fun labelImagesCloud(image: FirebaseVisionImage) {
         // [START set_detector_options_cloud]
-        val options = FirebaseVisionCloudDetectorOptions.Builder()
+        val options2 = FirebaseVisionCloudDetectorOptions.Builder()
                 .setModelType(FirebaseVisionCloudDetectorOptions.LATEST_MODEL)
                 .setMaxResults(30)
                 .build()
         // [END set_detector_options_cloud]
 
         // [START get_detector_cloud]
-        val detector = FirebaseVision.getInstance()
-                .visionCloudLabelDetector
-        // Or, to change the default settings:
-        // FirebaseVisionCloudLabelDetector detector = FirebaseVision.getInstance()
+        val detector: FirebaseVisionCloudLabelDetector = FirebaseVision.getInstance().getVisionCloudLabelDetector(options2)
         //         .getVisionCloudLabelDetector(options);
+        // Or, to change the default settings:
+        //
         // [END get_detector_cloud]
 
         // [START run_detector_cloud]
@@ -111,7 +121,9 @@ class ChoiceActivity : AppCompatActivity() {
                                     val text = label.label
                                     val entityId = label.entityId
                                     val confidence = label.confidence
-                                    Log.v("test", "addOnSuccessListener - Number of faces detected: " + label.label.toString())
+                                    Log.i("imageLabel", text.toString())
+                                    Log.i("imageLabel", entityId.toString())
+                                    Log.i("imageLabel", confidence.toString())
                                 }
                                 // [END get_labels_cloud]
                                 // [END_EXCLUDE]
@@ -125,6 +137,8 @@ class ChoiceActivity : AppCompatActivity() {
                                 // ...
                             }
                         })
+        val result2 = result.toString()
+        Log.d("test1234", result2)
         // [END run_detector_cloud]
     }
 
