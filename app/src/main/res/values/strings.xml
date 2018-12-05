@@ -8,6 +8,8 @@
     <string name="btn_item_history">Item History</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_register">RegisterActivity</string>
+    <string name="btn_location">Recycling Facilities</string>
+    <string name="btn_zipCode">Search!</string>
 
     <string name="already_have_account">Already have an account? Login!</string>
     <string name="button_register">Register</string>
@@ -15,4 +17,5 @@
     <string name="e_mail">E-mail</string>
     <string name="password">Password</string>
     <string name="back_to_registration">Don\'t have an account? Register!</string>
+    <string name="title_activity_location">LocationActivity</string>
 </resources>

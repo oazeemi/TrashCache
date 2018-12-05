@@ -32,6 +32,12 @@ class ChoiceActivity : AppCompatActivity() {
 
         val photoSearchBtn: Button = findViewById(R.id.btn_photo_search)
         photoSearchBtn.setOnClickListener { dispatchTakePictureIntent() }
+
+        val locationSearch: Button = findViewById(R.id.btn_location)
+        locationSearch.setOnClickListener {
+            val intent =  Intent(this, LocationActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 

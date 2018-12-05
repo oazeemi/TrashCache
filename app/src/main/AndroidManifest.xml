@@ -34,6 +34,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ChoiceActivity"></activity>
 
+        <activity
+            android:name=".LocationActivity"
+            android:label="@string/title_activity_location"
+            android:theme="@style/AppTheme"></activity>
+
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="AIzaSyAGP3XArBgpPxMlUoIhhplGNVwSwCtYmv4" />
@@ -41,5 +46,4 @@
 
     <uses-feature android:name="android.hardware.camera"
         android:required="true" />
-
 </manifest>
