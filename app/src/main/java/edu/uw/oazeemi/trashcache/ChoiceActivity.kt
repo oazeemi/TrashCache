@@ -21,6 +21,8 @@ import android.hardware.Camera
 import android.support.v4.app.NotificationCompat.getExtras
 import com.google.firebase.ml.vision.cloud.label.FirebaseVisionCloudLabelDetector
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_main.*
+
 class ChoiceActivity : AppCompatActivity() {
 
     private val REQUEST_IMAGE_CAPTURE = 111
@@ -45,6 +47,23 @@ class ChoiceActivity : AppCompatActivity() {
             val intent =  Intent(this, LocationActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+//        return when(item.itemId) {
+//            R.id.action_settings -> true
+//            else -> super.onOptionsItemSelected(item)
+//        }
+        return true
     }
 
 
