@@ -5,6 +5,7 @@
     <string name="logo_description">Trash Cache Logo</string>
     <string name="btn_photo_search">Take a photo</string>
     <string name="btn_text_search">Look up item</string>
+    <string name="btn_item_history">Item History</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_register">RegisterActivity</string>
 
