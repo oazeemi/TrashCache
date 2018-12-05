@@ -1,5 +1,4 @@
 package edu.uw.oazeemi.trashcache
-
 import android.content.Intent
 import android.graphics.Bitmap
 import com.google.android.gms.tasks.OnFailureListener
@@ -15,16 +14,18 @@ import com.google.firebase.ml.vision.FirebaseVision
 import com.google.firebase.ml.vision.cloud.FirebaseVisionCloudDetectorOptions
 import com.google.firebase.ml.vision.cloud.label.FirebaseVisionCloudLabel
 import android.util.Log
-import com.google.firebase.ml.vision.label.FirebaseVisionLabelDetectorOptions
 import android.widget.Toast
-import android.R.attr.data
-import android.support.v4.app.NotificationCompat.getExtras
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.ml.vision.cloud.label.FirebaseVisionCloudLabelDetector
-import kotlinx.android.synthetic.main.activity_choice.*
-
-
+import com.google.firebase.database.*
 class ChoiceActivity : AppCompatActivity() {
+
     private val REQUEST_IMAGE_CAPTURE = 111
+    private val mDatabase = FirebaseDatabase.getInstance().reference;
+    private var itemDetected:ItemDetected? = null;
+
+    private  val currentUser = FirebaseAuth.getInstance().getCurrentUser()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,121 +34,63 @@ class ChoiceActivity : AppCompatActivity() {
         val photoSearchBtn: Button = findViewById(R.id.btn_photo_search)
         photoSearchBtn.setOnClickListener { dispatchTakePictureIntent() }
     }
-
-
     private fun dispatchTakePictureIntent() {
+
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent: Intent ->
             takePictureIntent.resolveActivity(packageManager)?.also {
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
             }
         }
     }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             val imageBitmap = data?.extras?.get("data") as Bitmap
 
-//            mImageLabe
-///
             val image: FirebaseVisionImage =  FirebaseVisionImage.fromBitmap(imageBitmap)
-            labelImage(image)
+
             labelImagesCloud(image)
         }
     }
 
-    fun labelImage(image: FirebaseVisionImage) {
-        val options = FirebaseVisionLabelDetectorOptions.Builder()
-                .setConfidenceThreshold(0.8f)
-                .build()
-
-        val detector = FirebaseVision.getInstance()
-                .getVisionLabelDetector(options)
-
-            val result = detector.detectInImage(image)
-                    .addOnSuccessListener { labels ->
-                        // Task completed successfully
-                        // [START_EXCLUDE]
-                        // [START get_labels]
-                        for (label in labels) {
-                            val text = label.label
-                            val entityId = label.entityId
-                            val confidence = label.confidence
-                            Log.i("imageLabel", text.toString())
-                            Log.i("imageLabel", entityId.toString())
-                            Log.i("imageLabel", confidence.toString())
-                        }
-
-
-
-
-                        // [END get_labels]
-                        // [END_EXCLUDE]
-                    }
-                    .addOnFailureListener(
-                            object : OnFailureListener {
-                                override fun onFailure(e: Exception) {
-                                    // Task failed with an exception
-                                    // ...
-                                }
-                            })         // [END run_detector]
-//        val result2 = result.result
-//        Log.d("test1234", result2)
-        }
 
     private fun labelImagesCloud(image: FirebaseVisionImage) {
-        // [START set_detector_options_cloud]
-        val options2 = FirebaseVisionCloudDetectorOptions.Builder()
+        val options = FirebaseVisionCloudDetectorOptions.Builder()
                 .setModelType(FirebaseVisionCloudDetectorOptions.LATEST_MODEL)
-                .setMaxResults(30)
+                .setMaxResults(2)
                 .build()
-        // [END set_detector_options_cloud]
+        val detector: FirebaseVisionCloudLabelDetector = FirebaseVision.getInstance().getVisionCloudLabelDetector(options)
 
-        // [START get_detector_cloud]
-        val detector: FirebaseVisionCloudLabelDetector = FirebaseVision.getInstance().getVisionCloudLabelDetector(options2)
-        //         .getVisionCloudLabelDetector(options);
-        // Or, to change the default settings:
-        //
-        // [END get_detector_cloud]
-
-        // [START run_detector_cloud]
         val result = detector.detectInImage(image)
                 .addOnSuccessListener(
                         object : OnSuccessListener<List<FirebaseVisionCloudLabel>> {
                             override fun onSuccess(labels: List<FirebaseVisionCloudLabel>) {
-                                // Task completed successfully
-                                // [START_EXCLUDE]
-                                // [START get_labels_cloud]
-                                for (label in labels) {
-                                    val text = label.label
-                                    val entityId = label.entityId
-                                    val confidence = label.confidence
-                                    Log.i("imageLabel", text.toString())
-                                    Log.i("imageLabel", entityId.toString())
-                                    Log.i("imageLabel", confidence.toString())
-                                }
-                                // [END get_labels_cloud]
-                                // [END_EXCLUDE]
-                            }
 
+                                var item = labels[0]
+                                var itemName = item.label
+                                var itemConfidence = item.confidence
+                                if (currentUser != null) {
+                                    itemDetected = ItemDetected(itemName, itemConfidence, currentUser.uid)
+                                }
+
+                                Toast.makeText(this@ChoiceActivity, "${itemDetected.toString()}", Toast.LENGTH_LONG).show()
+
+                                mDatabase.child("itemsDetected").push().setValue(itemDetected) //add to the list
+                            }
                         })
                 .addOnFailureListener(
                         object : OnFailureListener {
                             override fun onFailure(e: Exception) {
-                                // Task failed with an exception
-                                // ...
+                                Log.v("ChoiceActivity", "${e.message}")
                             }
                         })
-        val result2 = result.toString()
-        Log.d("test1234", result2)
-        // [END run_detector_cloud]
-    }
 
+    }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
