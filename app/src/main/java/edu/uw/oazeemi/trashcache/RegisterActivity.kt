@@ -55,7 +55,7 @@ class RegisterActivity : AppCompatActivity() {
                     if(!it.isSuccessful) {
                         return@addOnCompleteListener
                     } else {
-                        var intent = Intent(this, ChoiceActivity::class.java)
+                        var intent = Intent(this, MainActivity::class.java)
                         intent.putExtra("id", FirebaseAuth.getInstance().currentUser?.email)
                         startActivity(intent)
                     }

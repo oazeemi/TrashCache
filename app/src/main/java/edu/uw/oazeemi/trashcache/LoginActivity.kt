@@ -16,7 +16,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 class LoginActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setSupportActionBar(toolbar)
 
         setContentView(R.layout.activity_login)
         val auth = FirebaseAuth.getInstance()
@@ -59,7 +58,7 @@ class LoginActivity: AppCompatActivity() {
                     if (!it.isSuccessful) {
                         return@addOnCompleteListener
                     } else {
-                        var intent = Intent(this, ChoiceActivity::class.java)
+                        var intent = Intent(this, MainActivity::class.java)
                         intent.putExtra("id", FirebaseAuth.getInstance().currentUser?.email)
                         startActivity(intent)
                     }
