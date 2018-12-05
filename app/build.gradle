@@ -42,6 +42,9 @@ dependencies {
     implementation "com.google.firebase:firebase-storage:16.0.5"
     implementation 'com.firebaseui:firebase-ui-database:4.2.1'
     implementation 'com.firebaseui:firebase-ui-auth:4.2.1'
+    implementation 'com.google.firebase:firebase-ml-vision:18.0.1'
+    implementation 'com.google.firebase:firebase-ml-vision-image-label-model:17.0.2'
+    implementation 'com.mindorks:paracamera:0.2.2'
 
 
 }

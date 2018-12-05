@@ -7,6 +7,27 @@
     android:layout_height="match_parent"
     tools:context=".ChoiceActivity">
 
+<<<<<<< HEAD
+=======
+    <Button
+        android:id="@+id/btn_text_search4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_buttonsecondary"
+        android:text="@string/btn_text_search"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="@+id/btn_photo_search"
+        app:layout_constraintStart_toStartOf="@+id/btn_photo_search"
+        app:layout_constraintTop_toBottomOf="@+id/btn_photo_search" />
+
+    <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
+        </android.support.design.widget.AppBarLayout>
+>>>>>>> 5c729756d831a68025191ab0675ac7c9be352e9f
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,6 +65,7 @@
         android:background="@drawable/rounded_buttonprimary"
         android:textColor="@android:color/white" />
 
+<<<<<<< HEAD
     <Button
         android:id="@+id/btn_text_search"
         android:layout_width="match_parent"
@@ -63,5 +85,28 @@
         tools:layout_editor_absoluteY="354dp" />
     </LinearLayout>
 </RelativeLayout>
+=======
+         <Button
+             android:id="@+id/btn_text_search3"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:layout_marginStart="3dp"
+             android:layout_marginTop="8dp"
+             android:background="@drawable/rounded_buttonsecondary"
+             android:text="@string/btn_item_history"
+             android:textColor="@android:color/white"
+             app:layout_constraintEnd_toEndOf="@+id/btn_photo_search"
+             app:layout_constraintHorizontal_bias="0.0"
+             app:layout_constraintStart_toStartOf="@+id/btn_photo_search"
+             app:layout_constraintTop_toBottomOf="@+id/btn_text_search" />
+
+         <Button
+             android:id="@+id/btnLogout"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:text="Log Out!"
+             tools:layout_editor_absoluteX="107dp"
+             tools:layout_editor_absoluteY="419dp" />
+>>>>>>> 5c729756d831a68025191ab0675ac7c9be352e9f
 
 
