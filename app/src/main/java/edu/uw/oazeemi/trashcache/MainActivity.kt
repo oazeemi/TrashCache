@@ -21,14 +21,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        val fragment = ChoiceFragment.newInstance("My Argument")
-
-        supportFragmentManager.beginTransaction()
-                .add(R.id.container, fragment)
-                .commit()
-
-
-
+        val intent = Intent(this, ChoiceActivity::class.java)
+        startActivity(intent)
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.

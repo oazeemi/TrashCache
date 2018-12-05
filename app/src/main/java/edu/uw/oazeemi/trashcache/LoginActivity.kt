@@ -11,10 +11,12 @@ import com.google.firebase.auth.FirebaseAuth
 
 
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 class LoginActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setSupportActionBar(toolbar)
 
         setContentView(R.layout.activity_login)
         val auth = FirebaseAuth.getInstance()

@@ -27,12 +27,7 @@ tools:context=".MainActivity">
 
 </android.support.design.widget.AppBarLayout>
 
-    <fragment
-        android:id="@+id/container"
-        android:name="edu.uw.oazeemi.trashcache.ChoiceFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+
 
 
 </android.support.design.widget.CoordinatorLayout>
