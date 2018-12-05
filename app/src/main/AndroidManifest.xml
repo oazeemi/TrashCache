@@ -33,6 +33,10 @@
             android:label="@string/title_activity_register"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ChoiceActivity"></activity>
+
+        <meta-data
+            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+            android:value="AIzaSyAGP3XArBgpPxMlUoIhhplGNVwSwCtYmv4" />
     </application>
 
     <uses-feature android:name="android.hardware.camera"
