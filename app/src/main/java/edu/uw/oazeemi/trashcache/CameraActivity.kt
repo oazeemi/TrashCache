@@ -1,6 +1,8 @@
 package edu.uw.oazeemi.trashcache
 
+import android.Manifest
 import android.content.Context
+import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.hardware.Camera
 import android.net.Uri
@@ -9,6 +11,8 @@ import android.os.Bundle
 import android.os.Environment
 import android.os.Environment.getExternalStoragePublicDirectory
 import android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.widget.*
 import com.google.android.gms.tasks.OnFailureListener
@@ -36,6 +40,7 @@ class CameraActivity : AppCompatActivity() {
     private val TAG = "CameraActivity"
     private val mDatabase = FirebaseDatabase.getInstance().reference;
     private var itemDetected:ItemDetected? = null;
+    private val REQUEST_CODE = 1
 
     private  val currentUser = FirebaseAuth.getInstance().getCurrentUser()
 
@@ -44,8 +49,6 @@ class CameraActivity : AppCompatActivity() {
             val imageBitmap = BitmapFactory.decodeByteArray(data, 0, data.size)
             val image: FirebaseVisionImage =  FirebaseVisionImage.fromBitmap(imageBitmap)
             labelImagesCloud(image)
-//            fos.write(data)
-//            fos.close()
         } catch (e: FileNotFoundException) {
             Log.d(TAG, "File not found: ${e.message}")
         } catch (e: IOException) {
@@ -56,16 +59,42 @@ class CameraActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_camera)
-
+        setupPermissions()
         camera = getCameraInstance()
         //camera!!.parameters!!.setRotation(90)
         preview = CameraPreview(this, camera!!)
         val previewLayout = findViewById<FrameLayout>(R.id.camera_preview)
         previewLayout.addView(preview)
         val captureButton: ImageButton = findViewById(R.id.button_capture)
+        val params = camera?.parameters
+        params?.focusMode = Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE
+        camera?.parameters = params
         captureButton.setOnClickListener {
             // get an image from the camera
             camera?.takePicture(null, null, mPicture)
+        }
+    }
+
+    private fun setupPermissions() {
+        val permission = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.CAMERA)
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            Log.i(TAG, "Permission denied")
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA),
+                    REQUEST_CODE)
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            REQUEST_CODE -> {
+                if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(this, "Denied", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Accepted", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 
