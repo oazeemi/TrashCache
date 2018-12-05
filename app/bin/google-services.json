@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "70133192138-rlhhhialdfgevg5e183pqao18mmkdngu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edu.uw.oazeemi.trashcache",
+            "certificate_hash": "a043e3bc7451eac5d47b01ca28c08fd611857081"
+          }
+        },
+        {
           "client_id": "70133192138-shsb3j1o3kkbvu59u8monr1sum7kfnbv.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "70133192138-shsb3j1o3kkbvu59u8monr1sum7kfnbv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
