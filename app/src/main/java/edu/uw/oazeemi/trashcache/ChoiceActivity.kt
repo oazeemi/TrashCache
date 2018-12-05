@@ -18,6 +18,7 @@ import android.util.Log
 import com.google.firebase.ml.vision.label.FirebaseVisionLabelDetectorOptions
 import android.widget.Toast
 import android.R.attr.data
+import android.hardware.Camera
 import android.support.v4.app.NotificationCompat.getExtras
 import com.google.firebase.ml.vision.cloud.label.FirebaseVisionCloudLabelDetector
 import kotlinx.android.synthetic.main.activity_choice.*
@@ -31,7 +32,10 @@ class ChoiceActivity : AppCompatActivity() {
         setContentView(R.layout.activity_choice)
 
         val photoSearchBtn: Button = findViewById(R.id.btn_photo_search)
-        photoSearchBtn.setOnClickListener { dispatchTakePictureIntent() }
+        photoSearchBtn.setOnClickListener {
+            val intent = Intent(this, CameraActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 
@@ -46,9 +50,6 @@ class ChoiceActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             val imageBitmap = data?.extras?.get("data") as Bitmap
-
-//            mImageLabe
-///
             val image: FirebaseVisionImage =  FirebaseVisionImage.fromBitmap(imageBitmap)
             labelImage(image)
             labelImagesCloud(image)
