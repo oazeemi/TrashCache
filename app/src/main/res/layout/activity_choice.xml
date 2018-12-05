@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center_vertical"
     android:background="@drawable/main_activity_background"
     tools:context=".ChoiceActivity">
 
@@ -113,14 +114,5 @@
              app:layout_constraintTop_toBottomOf="@+id/btn_location"
              tools:layout_editor_absoluteX="107dp"
              tools:layout_editor_absoluteY="419dp" />
-        <Button
-            android:id="@+id/btnLogout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Log Out!"
-            tools:layout_editor_absoluteX="107dp"
-            tools:layout_editor_absoluteY="419dp" />
-
-
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

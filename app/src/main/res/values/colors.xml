@@ -10,4 +10,6 @@
     <color name="colorAccent">#3a3a3a</color>
     <color name="shape_border_active">#eff0f1</color>
     <color name="black_semi">#24000000</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
 </resources>

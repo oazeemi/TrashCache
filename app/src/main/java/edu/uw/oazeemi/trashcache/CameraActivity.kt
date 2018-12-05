@@ -10,10 +10,7 @@ import android.os.Environment
 import android.os.Environment.getExternalStoragePublicDirectory
 import android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE
 import android.util.Log
-import android.widget.Button
-import android.widget.FrameLayout
-import android.widget.ImageButton
-import android.widget.Toast
+import android.widget.*
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
@@ -106,7 +103,9 @@ class CameraActivity : AppCompatActivity() {
                                     itemDetected = ItemDetected(itemName, itemConfidence, currentUser.uid)
                                 }
 
-                                Toast.makeText(this@CameraActivity, "${itemDetected.toString()}", Toast.LENGTH_LONG).show()
+                                val itemTextView = findViewById<TextView>(R.id.item_detected)
+                                itemTextView.text = itemDetected?.itemName.toString()
+                                //Toast.makeText(this@CameraActivity, "${itemDetected.toString()}", Toast.LENGTH_LONG).show()
 
                                 mDatabase.child("itemsDetected").push().setValue(itemDetected) //add to the list
                             }
