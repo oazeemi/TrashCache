@@ -5,6 +5,8 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Bitmap
+import android.media.Image
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.support.design.widget.NavigationView
@@ -19,6 +21,7 @@ import android.util.Log
 import android.view.*
 import android.widget.Button
 import android.widget.TextView
+import com.google.firebase.auth.FirebaseAuth
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.nav_header_main.*
@@ -28,6 +31,8 @@ class MainActivity : AppCompatActivity() {
     private val REQUEST_IMAGE_CAPTURE = 1
     private lateinit var drawer: DrawerLayout
     private lateinit var toggle: ActionBarDrawerToggle
+    private var userName: String? = null
+    private var userPhoto: Uri? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +42,14 @@ class MainActivity : AppCompatActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar_main)
 
         setSupportActionBar(toolbar)
+
+        val user = FirebaseAuth.getInstance().currentUser
+        user?.let {
+            userName = user.displayName
+            userPhoto  = user.photoUrl
+
+        }
+
 
         drawer = findViewById(R.id.drawer_layout)
         toggle = ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -57,6 +70,8 @@ class MainActivity : AppCompatActivity() {
 
                     override fun onDrawerOpened(drawerView: View) {
                         // Respond when the drawer is opened
+                        nav_header_textView.text = userName
+                        nav_header_imageView.setImageURI(userPhoto)
                     }
 
                     override fun onDrawerClosed(drawerView: View) {
@@ -74,27 +89,38 @@ class MainActivity : AppCompatActivity() {
             // set item as selected to persist highlight
             menuItem.isChecked = true
             Log.v("Drawer", "clicked")
+
+
             // close drawer when item is tapped
             drawer.closeDrawers()
 
             // Add code here to update the UI based on the item selected
             // For example, swap UI fragments here
+            when (menuItem.itemId) {
 
+                R.id.nav_item_history -> {
+                    Log.v("Drawer", "clicked")
+                }//do somthing
+
+                R.id.nav_item_logout -> {
+                    FirebaseAuth.getInstance().signOut();
+                }
+            }
             true
         }
 
-
+        // Verify the action and get the query
+        if (Intent.ACTION_SEARCH == intent.action) {
+            intent.getStringExtra(SearchManager.QUERY)?.also { query ->
+//                doMySearch(query)
+            }
+        }
 
 
         val intent = Intent(this, ChoiceActivity::class.java)
 //        startActivity(intent)
     }
 
-//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-//        menuInflater.inflate(R.menu.options_menu, menu)
-//
-//        return true
-//    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the options menu from XML
@@ -111,25 +137,16 @@ class MainActivity : AppCompatActivity() {
 
         return true
     }
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        return when(item.itemId) {
-//            R.id.action_settings -> true
-//            else -> super.onOptionsItemSelected(item)
-//        }
-//    }
 
-    override fun onPostCreate(savedInstanceState: Bundle?) {
-    super.onPostCreate(savedInstanceState)
-    toggle.syncState()
-}
-
-override fun onConfigurationChanged(newConfig: Configuration?) {
-    super.onConfigurationChanged(newConfig)
-    toggle.onConfigurationChanged(newConfig)
-}
+//    override fun onPostCreate(savedInstanceState: Bundle?) {
+//    super.onPostCreate(savedInstanceState)
+//    toggle.syncState()
+//}
+//
+//override fun onConfigurationChanged(newConfig: Configuration?) {
+//    super.onConfigurationChanged(newConfig)
+//    toggle.onConfigurationChanged(newConfig)
+//}
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -6,7 +6,8 @@ xmlns:tools="http://schemas.android.com/tools"
 android:id="@+id/drawer_layout"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-tools:openDrawer="start">
+tools:openDrawer="start"
+    android:background="@drawable/main_activity_background">
 
 <include
     layout="@layout/app_bar_main"
@@ -20,6 +21,8 @@ tools:openDrawer="start">
     android:layout_gravity="start"
     app:headerLayout="@layout/nav_header_main"
     app:menu="@menu/activity_main_drawer" />
+
+    <include layout="@layout/activity_choice"/>
 
     <FrameLayout
         android:id="@+id/frameLayout"
