@@ -126,7 +126,6 @@ class CameraActivity : AppCompatActivity() {
                         object : OnSuccessListener<List<FirebaseVisionCloudLabel>> {
                             override fun onSuccess(labels: List<FirebaseVisionCloudLabel>) {
 
-                                Toast.makeText(this@CameraActivity, "Here", Toast.LENGTH_LONG).show()
 
                                 var item = labels[0]
                                 var itemName = item.label
@@ -137,7 +136,6 @@ class CameraActivity : AppCompatActivity() {
 
                                 val itemTextView = findViewById<TextView>(R.id.item_detected)
                                 itemTextView.text = itemDetected?.itemName.toString()
-                                //Toast.makeText(this@CameraActivity, "${itemDetected.toString()}", Toast.LENGTH_LONG).show()
 
                                 mDatabase.child("itemsDetected").push().setValue(itemDetected) //add to the list
                                 val intent = Intent(this@CameraActivity, RecycleInformation::class.java)

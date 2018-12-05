@@ -110,7 +110,6 @@ class LocationActivity : AppCompatActivity() {
                 Singleton.getInstance(this).add(jsonObjectRequest)
             }
         } else {
-            Toast.makeText(this, "$latitude", Toast.LENGTH_SHORT).show()
             query = url + "earth911.searchLocations?api_key=" + key + "&latitude=" + latitude + "&longitude=" + longitude + "&max_distance=2"
             val jsonObjectRequest = JsonObjectRequest(Request.Method.GET, query, null,
                     Response.Listener { response ->

@@ -76,7 +76,6 @@ class RecycleInformation : AppCompatActivity() {
             for (i in 0 until JsonArray.length()) {
                 val recycleObj = JsonArray.getJSONObject(i)
                 val exact = recycleObj.getString("exact").toBoolean()
-                Toast.makeText(this, "$exact", Toast.LENGTH_LONG).show()
                 if (exact) {
                     statement = "Recyclable"
                     val item = recycleObj.getString("material_id").toInt()
