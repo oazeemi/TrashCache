@@ -45,7 +45,7 @@
         <activity
             android:name=".RegisterActivity"
             android:label="@string/title_activity_register" />
-        <activity android:name=".ChoiceActivity" />
+
         <activity
             android:name=".LocationActivity"
             android:label="@string/title_activity_location"

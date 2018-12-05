@@ -22,8 +22,94 @@ tools:openDrawer="start"
     app:headerLayout="@layout/nav_header_main"
     app:menu="@menu/activity_main_drawer" />
 
-    <include layout="@layout/activity_choice"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
 
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="50dp"
+        android:elevation="2dp"
+        android:paddingBottom="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:srcCompat="@drawable/logo" />
+
+        <Button
+            android:id="@+id/btn_photo_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_buttonprimary"
+            android:text="@string/btn_photo_search"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="@+id/imageView2"
+            app:layout_constraintStart_toStartOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+        <Button
+            android:id="@+id/btn_text_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_buttonsecondary"
+            android:text="@string/btn_text_search"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="@+id/btn_photo_search"
+            app:layout_constraintStart_toStartOf="@+id/btn_photo_search"
+            app:layout_constraintTop_toBottomOf="@+id/btn_photo_search" />
+
+        <Button
+            android:id="@+id/btn_text_search3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_buttonsecondary"
+            android:text="@string/btn_item_history"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="@+id/btn_photo_search"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/btn_photo_search"
+            app:layout_constraintTop_toBottomOf="@+id/btn_text_search" />
+
+        <Button
+            android:id="@+id/btn_location"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_buttonsecondary"
+            android:text="@string/btn_location"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="@+id/btn_photo_search"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/btn_photo_search"
+            app:layout_constraintTop_toBottomOf="@+id/btn_text_search3" />
+
+    </android.support.constraint.ConstraintLayout>
+    </RelativeLayout>
       <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"

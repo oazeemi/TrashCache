@@ -22,6 +22,7 @@ import android.view.*
 import android.widget.Button
 import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.nav_header_main.*
@@ -29,6 +30,9 @@ import kotlinx.android.synthetic.main.nav_header_main.*
 
 class MainActivity : AppCompatActivity() {
     private val REQUEST_IMAGE_CAPTURE = 1
+    private val mDatabase = FirebaseDatabase.getInstance().reference;
+    private  val currentUser = FirebaseAuth.getInstance().getCurrentUser()
+
     private lateinit var drawer: DrawerLayout
     private lateinit var toggle: ActionBarDrawerToggle
     private var userName: String? = null
@@ -40,16 +44,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val toolbar: Toolbar = findViewById(R.id.toolbar_main)
-
         setSupportActionBar(toolbar)
-
-        val user = FirebaseAuth.getInstance().currentUser
-        user?.let {
-            userName = user.displayName
-            userPhoto  = user.photoUrl
-
-        }
-
 
         drawer = findViewById(R.id.drawer_layout)
         toggle = ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -70,8 +65,10 @@ class MainActivity : AppCompatActivity() {
 
                     override fun onDrawerOpened(drawerView: View) {
                         // Respond when the drawer is opened
-                        nav_header_textView.text = userName
-                        nav_header_imageView.setImageURI(userPhoto)
+                        if(currentUser != null) {
+                            nav_header_textView.text = currentUser.displayName
+                            nav_header_imageView.setImageURI(currentUser.photoUrl)
+                        }
                     }
 
                     override fun onDrawerClosed(drawerView: View) {
@@ -116,9 +113,18 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        // CHOICES
+        val photoSearchBtn: Button = findViewById(R.id.btn_photo_search)
+        photoSearchBtn.setOnClickListener {
+            val intent = Intent(this, CameraActivity::class.java)
+            startActivity(intent)
+        }
 
-        val intent = Intent(this, ChoiceActivity::class.java)
-//        startActivity(intent)
+        val locationSearch: Button = findViewById(R.id.btn_location)
+        locationSearch.setOnClickListener {
+            val intent =  Intent(this, LocationActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 
@@ -137,16 +143,6 @@ class MainActivity : AppCompatActivity() {
 
         return true
     }
-
-//    override fun onPostCreate(savedInstanceState: Bundle?) {
-//    super.onPostCreate(savedInstanceState)
-//    toggle.syncState()
-//}
-//
-//override fun onConfigurationChanged(newConfig: Configuration?) {
-//    super.onConfigurationChanged(newConfig)
-//    toggle.onConfigurationChanged(newConfig)
-//}
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
