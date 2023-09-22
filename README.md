@@ -29,7 +29,7 @@ http://plantpharmacy.app
 
 ## Our Engineers
 - @muatasimqazi (Muatasim Qazi)
-- @alemaulou Alessandro Lou
-- @oazeemi Omar Azeemi
+- @alemaulou (Alessandro Lou)
+- @oazeemi (Omar Azeemi)
 - @tarallen19
 
