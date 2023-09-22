@@ -5,7 +5,7 @@
 
 # Trash Cache
 ## Our Mission
-TrashCache's mission is to empower users to make informed decisions about recycling by accurately identifying recyclable items and suggesting appropriate recycling methods, ultimately contributing to sustainable waste management and a cleaner environment<sup>3</sup>. While materials can be recycled, not everyone knows how or if a specific item is recyclable, leading to confusion and often incorrect disposal.
+Trash Cache's mission is to empower users to make informed decisions about recycling by accurately identifying recyclable items and suggesting appropriate recycling methods, ultimately contributing to sustainable waste management and a cleaner environment While materials can be recycled, not everyone knows how or if a specific item is recyclable, leading to confusion and often incorrect disposal.
 
 In today's world, recycling is more important than ever, considering its positive impacts on reducing waste and preserving our natural resources. However, distinguishing recyclable items and understanding the appropriate recycling techniques can be challenging for many individuals. Various sources such as websites, articles, and guides attempt to educate on recycling practices, but they may not always provide real-time or convenient solutions.
 
