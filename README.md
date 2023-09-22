@@ -1,6 +1,6 @@
 
 <p align="center">
-    <img src="./prototype/logos/logo_icon_large.svg" width="50%">
+    <img src="./prototype/logos/logo_icon_large.svg" width="40%">
 </p>
 
 # Trash Cache
