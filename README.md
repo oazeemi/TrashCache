@@ -27,14 +27,9 @@ Android Studio, Java, Android SDK, Machine Learning, RESTful API
 ## Online Presence
 http://plantpharmacy.app
 
-## Team members 
-- Kyra Bautista (CDO/PM)
-    - kyrabb@uw.edu
-- Mikias Lema (CDO)
-    - mikias@uw.edu
-- Alessandro Lou (Engineer)
-    - alemau@uw.edu
-- Adrian Ionescu (CEO/ Engineer)
-    - aiones@uw.edu
-- Pooja Ramanathan (CTO)
-    - ps2112@uw.edu
+## Our Engineers
+- @muatasimqazi (Muatasim Qazi)
+- @alemaulou Alessandro Lou
+- @oazeemi Omar Azeemi
+- @tarallen19
+
