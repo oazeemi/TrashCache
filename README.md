@@ -22,7 +22,7 @@ TrashCache is an Android application developed using Android Studio and integrat
 </p>
 
 ## Tech Stack
-Android Studio, Java, Android SDK, Machine Learning, RESTful API
+Android Studio, Kotlin, Android SDK, Machine Learning, RESTful API
 
 ## Our Engineers
 - @muatasimqazi (Muatasim Qazi)
